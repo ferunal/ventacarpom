@@ -32,7 +32,7 @@ import javax.inject.Named;
 @SessionScoped
 @Named
 public class ComentariosJSFBean extends ConexionBD {
-
+/*
     @Inject
     AutoJSFBean autoJSFBean;
     @Inject
@@ -120,71 +120,5 @@ public class ComentariosJSFBean extends ConexionBD {
     /**
      * @return the lstTablaUsuarios
      */
-    public List<TablaUsuario> getLstTablaUsuarios() {
-        return lstTablaUsuarios;
-    }
-
-    /**
-     * @param lstTablaUsuarios the lstTablaUsuarios to set
-     */
-    public void setLstTablaUsuarios(List<TablaUsuario> lstTablaUsuarios) {
-        this.lstTablaUsuarios = lstTablaUsuarios;
-    }
-
-    /**
-     * @return the tablaUsuarioSel
-     */
-    public TablaUsuario getTablaUsuarioSel() {
-        return tablaUsuarioSel;
-    }
-
-    /**
-     * @param tablaUsuarioSel the tablaUsuarioSel to set
-     */
-    public void setTablaUsuarioSel(TablaUsuario tablaUsuarioSel) {
-        this.tablaUsuarioSel = tablaUsuarioSel;
-    }
-
-    /**
-     * @return the comentario
-     */
-    public String getComentario() {
-        return comentario;
-    }
-
-    /**
-     * @param comentario the comentario to set
-     */
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    /**
-     * @return the idUsrSel
-     */
-    public String getIdUsrSel() {
-        return idUsrSel;
-    }
-
-    /**
-     * @param idUsrSel the idUsrSel to set
-     */
-    public void setIdUsrSel(String idUsrSel) {
-        this.idUsrSel = idUsrSel;
-    }
-
-    /**
-     * @return the lstItemsUsr
-     */
-    public List<SelectItem> getLstItemsUsr() {
-        return lstItemsUsr;
-    }
-
-    /**
-     * @param lstItemsUsr the lstItemsUsr to set
-     */
-    public void setLstItemsUsr(List<SelectItem> lstItemsUsr) {
-        this.lstItemsUsr = lstItemsUsr;
-    }
-
+  
 }

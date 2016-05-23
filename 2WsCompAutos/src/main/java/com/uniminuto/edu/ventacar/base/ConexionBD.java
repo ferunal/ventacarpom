@@ -24,44 +24,25 @@ import org.postgresql.ds.PGSimpleDataSource;
  * @author Luis Fernando
  */
 public abstract class ConexionBD implements Serializable {
-    protected final String rutaRecursos="/WEB-INF/classes/";
-    protected SelectItem itemSeleccioneStr = new SelectItem("-1", "Seleccione>>");
-    protected SelectItem itemSeleccioneInt = new SelectItem(-1, "Seleccione>>");
-    protected SelectItem itemSeleccioneLng = new SelectItem(-1l, "Seleccione>>");
-    protected FacesContext fc = FacesContext.getCurrentInstance();
-    protected ELContext elc;
-    protected Integer numPanel = 1;
-    protected String strPagId = "";
-    protected boolean blnImgError = false;
-    protected String strDetalleIncons = "";
+
+    protected final String rutaRecursos = "/WEB-INF/classes/";
+
     protected Connection conPg;
     protected Connection conMy;
 
-    public Integer getNumPanel() {
-        return numPanel;
-    }
+    DataSource pgDs;
 
-    public void setNumPanel(Integer numPanel) {
-        this.numPanel = numPanel;
-    }
+    DataSource mds;
 
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Funciones Comunes">
     protected void dsPgConexion() throws SQLException {
-        PGSimpleDataSource pgDs = new PGSimpleDataSource();
-        pgDs.setServerName("localhost");
-        pgDs.setDatabaseName("ventacar");
-        pgDs.setUser("auditoria");
-        pgDs.setPassword("auditoria");
-        pgDs.setPortNumber(5432);
+
         conPg = pgDs.getConnection();
     }
 
     protected void dsMyConexion() throws SQLException {
-        MysqlDataSource mds = new MysqlDataSource();
-        mds.setURL("jdbc:mysql://localhost:3306/usuarios");
-        mds.setUser("uniminuto");
-        mds.setPassword("uniminuto");
+
         conMy = mds.getConnection();
     }
 
@@ -94,17 +75,8 @@ public abstract class ConexionBD implements Serializable {
     }
 
 //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Funciones Abstractas">
-    public abstract void init();
+   
 
-    public abstract void limpiarVariables();
-
-    public abstract void navegacionLateral_ActionEvent(ActionEvent ae);
-
-    public abstract boolean validarFormulario();
-    //</editor-fold>
-
-  
     //<editor-fold defaultstate="collapsed" desc="manejo listas">
     public Long cantElemSelLista(List<? extends TablaBaseFrm> lst) {
 
@@ -159,4 +131,19 @@ public abstract class ConexionBD implements Serializable {
     }
     //</editor-fold>
 
+    public DataSource getPgDs() {
+        return pgDs;
+    }
+
+    public void setPgDs(DataSource pgDs) {
+        this.pgDs = pgDs;
+    }
+
+    public DataSource getMds() {
+        return mds;
+    }
+
+    public void setMds(DataSource mds) {
+        this.mds = mds;
+    }
 }
