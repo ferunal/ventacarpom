@@ -7,13 +7,16 @@ package com.uniminuto.edu.ventacar.vista.rfws;
 
 import com.uniminuto.edu.ventacar.ctrl.AutoCRUD;
 import com.uniminuto.edu.ventacar.ctrl.TablaCaracteristica;
+import com.uniminuto.edu.ventacar.modelo.CaractXAuto;
 import com.uniminuto.edu.ventacar.modelo.CmtCalificacion;
 import com.uniminuto.edu.ventacar.modelo.VntCaracteristicas;
 import com.uniminuto.edu.ventacar.modelo.VntCarro;
+import com.uniminuto.edu.ventacar.modelo.VntTipocrt;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -35,7 +38,7 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/addauto")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String addAuto(VntCarro carro) {
+    public String addAuto(@QueryParam("carro") VntCarro carro) {
         acrud.setMds(dsMyUsuarios);
         acrud.setPgDs(dsPgVentacar);
         return String.valueOf(acrud.guardarCarro(carro));
@@ -75,4 +78,20 @@ public class AdmBdRWS extends BaseRestfulWS {
     public String addCaract(@QueryParam("strCaract") String strCaract, @QueryParam("tipoCar") Integer tipoCar) {
         return String.valueOf(acrud.guardarCaracteristica(strCaract, tipoCar));
     }
+
+    @POST
+    @Path("/addcarxauto")
+    @Produces(MediaType.TEXT_HTML)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String guardarCaractXAuto(@QueryParam("pVntCarcactxautos") List<CaractXAuto> pVntCarcactxautos) {
+        return String.valueOf(acrud.guardarCaracXAuto(pVntCarcactxautos));
+    }
+
+    @GET
+    @Path("/gettipocaract")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<VntTipocrt> getLstTipocrts() {
+        return acrud.cargarTipoCaract();
+    }
+
 }

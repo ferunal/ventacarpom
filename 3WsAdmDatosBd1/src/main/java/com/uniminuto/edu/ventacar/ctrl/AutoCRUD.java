@@ -174,7 +174,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         }
     }
 
-    private List<VntTipocrt> cargarTipoCaract() {
+    public List<VntTipocrt> cargarTipoCaract() {
         List<VntTipocrt> lstTipocrts = new ArrayList<>();
 
         try {
@@ -194,7 +194,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         }
     }
 
-    private boolean guardarCaracXAuto(List<CaractXAuto> pVntCarcactxautos) {
+    public boolean guardarCaracXAuto(List<CaractXAuto> pVntCarcactxautos) {
 
         String strInsCaract = "{ ? = call fn_insertar_caracxauto(?,?) }";
 
