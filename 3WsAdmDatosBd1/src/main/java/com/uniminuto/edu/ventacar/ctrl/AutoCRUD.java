@@ -33,6 +33,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
 //    private TablaCarro tablaCarroSel = new TablaCarro();
     public Long guardarCarro(VntCarro pVntCarro) {
         try {
+            dsPgConexion();
             String strInsCaract = "{ ? = call fn_insertar_auto(?,?) }";
             CallableStatement pst = conPg.prepareCall(strInsCaract);
             pst.registerOutParameter(1, Types.BIGINT);
@@ -43,6 +44,12 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return -1L;
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -54,6 +61,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         List<CmtCalificacion> lstCalfXAuto = new ArrayList<>();
 
         try {
+            dsPgConexion();
             String strSql = "SELECT \n"
                     + "  cmt_calificacion.cmtr_id, \n"
                     + "  cmt_calificacion.cmtr_comentario, \n"
@@ -81,6 +89,12 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return new ArrayList<>();
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -88,6 +102,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         List<VntCaracteristicas> lstTablaCaractXAuto = new ArrayList<>();
 
         try {
+            dsPgConexion();
             String strSql = "SELECT c.crtc_id, c.crtc_descripcion, c.crtc_est, t.tpcr_id , t.tpcr_nombre "
                     + " FROM vnt_caracteristicas c INNER JOIN vnt_tipocrt t ON c.tpcr_id = t.tpcr_id "
                     + "INNER JOIN vnt_carcactxauto cxa ON c.crtc_id = cxa.crtc_id "
@@ -109,6 +124,12 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return new ArrayList<>();
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -116,6 +137,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         List<VntCarro> lstTablaCarro = new ArrayList<>();
 
         try {
+            dsPgConexion();
             String strSql = "SELECT car_id, car_nombre, car_foto, car_est  FROM public.vnt_carro ORDER BY car_nombre";
             Statement st = conPg.createStatement();
             ResultSet rs = st.executeQuery(strSql);
@@ -131,11 +153,18 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return new ArrayList<>();
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     public Long guardarCaracteristica(String pCaract, Integer tipoCarSel) {
         try {
+            dsPgConexion();
             String strInsCaract = "{ ? = call fn_insertar_caracterisitca(?,?) }";
             CallableStatement pst = conPg.prepareCall(strInsCaract);
             pst.registerOutParameter(1, Types.BIGINT);
@@ -146,6 +175,12 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return -1L;
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -154,6 +189,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
 
         List<VntCaracteristicas> lstTablaCaract = new ArrayList<>();
         try {
+            dsPgConexion();
             String strSql = "SELECT c.crtc_id, c.crtc_descripcion, c.crtc_est, t.tpcr_id , t.tpcr_nombre  FROM vnt_caracteristicas c INNER JOIN vnt_tipocrt t ON c.tpcr_id = t.tpcr_id ORDER BY crtc_descripcion";
             Statement st = conPg.createStatement();
             ResultSet rs = st.executeQuery(strSql);
@@ -171,6 +207,12 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return new ArrayList<>();
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -178,6 +220,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         List<VntTipocrt> lstTipocrts = new ArrayList<>();
 
         try {
+            dsPgConexion();
             String strSql = "SELECT tpcr_id, tpcr_nombre  FROM vnt_tipocrt ORDER BY  tpcr_nombre;";
             Statement st = conPg.createStatement();
             ResultSet rs = st.executeQuery(strSql);
@@ -191,6 +234,12 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return new ArrayList<>();
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -199,6 +248,7 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         String strInsCaract = "{ ? = call fn_insertar_caracxauto(?,?) }";
 
         try {
+            dsPgConexion();
             CallableStatement pst = conPg.prepareCall(strInsCaract);
 
             for (CaractXAuto cxa : pVntCarcactxautos) {
@@ -212,6 +262,12 @@ public class AutoCRUD extends ConexionBD implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }

@@ -6,7 +6,6 @@
 package com.uniminuto.edu.ventacar.vista.rfws;
 
 import com.uniminuto.edu.ventacar.ctrl.AutoCRUD;
-import com.uniminuto.edu.ventacar.ctrl.TablaCaracteristica;
 import com.uniminuto.edu.ventacar.modelo.CaractXAuto;
 import com.uniminuto.edu.ventacar.modelo.CmtCalificacion;
 import com.uniminuto.edu.ventacar.modelo.VntCaracteristicas;
@@ -21,7 +20,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -41,6 +39,7 @@ public class AdmBdRWS extends BaseRestfulWS {
     public String addAuto(@QueryParam("carro") VntCarro carro) {
         acrud.setMds(dsMyUsuarios);
         acrud.setPgDs(dsPgVentacar);
+       
         return String.valueOf(acrud.guardarCarro(carro));
     }
 
@@ -48,6 +47,8 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/getautos")
     @Produces(MediaType.APPLICATION_JSON)
     public List<VntCarro> getLstCarros() {
+        acrud.setMds(dsMyUsuarios);
+        acrud.setPgDs(dsPgVentacar);
         return acrud.getLstCarros();
     }
 
@@ -55,6 +56,8 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/getcalxauto")
     @Produces(MediaType.APPLICATION_JSON)
     public List<CmtCalificacion> getCalificacionsXauto(@QueryParam("pCarId") Long pCarId) {
+        acrud.setMds(dsMyUsuarios);
+        acrud.setPgDs(dsPgVentacar);
         return acrud.getCmtCalificacionsXauto(pCarId);
     }
 
@@ -62,6 +65,8 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/getcarcactxauto")
     @Produces(MediaType.APPLICATION_JSON)
     public List<VntCaracteristicas> getLstCaractXAuto(@QueryParam("pCarId") Long pCarId) {
+        acrud.setMds(dsMyUsuarios);
+        acrud.setPgDs(dsPgVentacar);
         return acrud.cargarCaractsXAuto(pCarId);
     }
 
@@ -69,6 +74,8 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/getcarcact")
     @Produces(MediaType.APPLICATION_JSON)
     public List<VntCaracteristicas> getLstCaract() {
+        acrud.setMds(dsMyUsuarios);
+        acrud.setPgDs(dsPgVentacar);
         return acrud.cargarCaracts();
     }
 
@@ -76,6 +83,8 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/addcaract")
     @Produces(MediaType.TEXT_PLAIN)
     public String addCaract(@QueryParam("strCaract") String strCaract, @QueryParam("tipoCar") Integer tipoCar) {
+        acrud.setMds(dsMyUsuarios);
+        acrud.setPgDs(dsPgVentacar);
         return String.valueOf(acrud.guardarCaracteristica(strCaract, tipoCar));
     }
 
@@ -84,6 +93,8 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_JSON)
     public String guardarCaractXAuto(@QueryParam("pVntCarcactxautos") List<CaractXAuto> pVntCarcactxautos) {
+        acrud.setMds(dsMyUsuarios);
+        acrud.setPgDs(dsPgVentacar);
         return String.valueOf(acrud.guardarCaracXAuto(pVntCarcactxautos));
     }
 
@@ -91,6 +102,8 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/gettipocaract")
     @Produces(MediaType.APPLICATION_JSON)
     public List<VntTipocrt> getLstTipocrts() {
+        acrud.setMds(dsMyUsuarios);
+        acrud.setPgDs(dsPgVentacar);
         return acrud.cargarTipoCaract();
     }
 
