@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.ws.wscompautos.edu.uniminuto.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="CompAutosWS" targetNamespace="http://soap.ws.wscompautos.edu.uniminuto.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soap.ws.wscompautos.edu.uniminuto.com/" elementFormDefault="unqualified" targetNamespace="http://soap.ws.wscompautos.edu.uniminuto.com/" version="1.0">
+
+  <xs:element name="compararAutos" type="tns:compararAutos"/>
+
+  <xs:element name="compararAutosResponse" type="tns:compararAutosResponse"/>
+
+  <xs:element name="hello" type="tns:hello"/>
+
+  <xs:element name="helloResponse" type="tns:helloResponse"/>
+
+  <xs:complexType name="compararAutos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="pIdCarros" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="compararAutosResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:vntCarro"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vntCarro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="carEst" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="carFoto" type="xs:string"/>
+      <xs:element minOccurs="0" name="carId" type="xs:long"/>
+      <xs:element minOccurs="0" name="carNombre" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cmtCalificacionList" nillable="true" type="tns:cmtCalificacion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cmtCalificacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cmrtFecha" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="cmtrComentario" type="xs:string"/>
+      <xs:element minOccurs="0" name="cmtrId" type="xs:long"/>
+      <xs:element minOccurs="0" name="usrId" type="xs:string"/>
+      <xs:element minOccurs="0" name="usrNombre" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="helloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="compararAutosResponse">
+    <wsdl:part element="tns:compararAutosResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hello">
+    <wsdl:part element="tns:hello" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="compararAutos">
+    <wsdl:part element="tns:compararAutos" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="helloResponse">
+    <wsdl:part element="tns:helloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CompAutosWS">
+    <wsdl:operation name="compararAutos">
+      <wsdl:input message="tns:compararAutos" name="compararAutos">
+    </wsdl:input>
+      <wsdl:output message="tns:compararAutosResponse" name="compararAutosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hello">
+      <wsdl:input message="tns:hello" name="hello">
+    </wsdl:input>
+      <wsdl:output message="tns:helloResponse" name="helloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CompAutosWSSoapBinding" type="tns:CompAutosWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="compararAutos">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="compararAutos">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="compararAutosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="hello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="helloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CompAutosWS">
+    <wsdl:port binding="tns:CompAutosWSSoapBinding" name="CompAutosWSPort">
+      <soap:address location="http://localhost:38080/2WsCompAutos/CompAutosWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

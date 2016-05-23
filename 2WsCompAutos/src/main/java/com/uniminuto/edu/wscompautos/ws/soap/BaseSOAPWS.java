@@ -5,23 +5,18 @@
  */
 package com.uniminuto.edu.wscompautos.ws.soap;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import org.postgresql.ds.PGSimpleDataSource;
 
 /**
  *
  * @author fercris
  */
-public abstract class BaseRestfulWS {
+public abstract class BaseSOAPWS {
 
-    @Resource(lookup = "")
+    @Resource(lookup = "java:jboss/datasources/ventacards")
     protected DataSource dsPgVentacar;
-    @Resource(lookup = "")
-    protected DataSource dsMyUsuarios;
+ 
 
    
 }

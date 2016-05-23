@@ -17,7 +17,7 @@ import javax.jws.WebParam;
  * @author fercris
  */
 @WebService(serviceName = "CompAutosWS")
-public class CompAutosWS extends BaseRestfulWS {
+public class CompAutosWS extends BaseSOAPWS {
 
     AutoComparar ac = new AutoComparar();
 
@@ -33,8 +33,7 @@ public class CompAutosWS extends BaseRestfulWS {
     }
 
     @WebMethod(operationName = "compararAutos")
-    public List<VntCarro> getLstCarrosXIds(@WebParam(name = "pIdCarros") String pIdCarros) {
-        ac.setMds(dsMyUsuarios);
+    public List<VntCarro> getLstCarrosXIds(@WebParam(name = "pIdCarros") String pIdCarros) {        
         ac.setPgDs(dsPgVentacar);
         return ac.getLstCarrosXIds(pIdCarros);
     }

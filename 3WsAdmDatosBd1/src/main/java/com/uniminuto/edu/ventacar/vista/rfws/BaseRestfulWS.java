@@ -18,10 +18,10 @@ import org.postgresql.ds.PGSimpleDataSource;
  */
 public abstract class BaseRestfulWS {
 
-    @Resource(lookup = "")
+    @Resource(lookup = "java:jboss/datasources/ventacards")
     protected DataSource dsPgVentacar;
-    @Resource(lookup = "")
-    protected DataSource dsMyUsuarios;
+//    @Resource(lookup = "")
+//    protected DataSource dsMyUsuarios;
 
    
 }
