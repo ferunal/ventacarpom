@@ -5,6 +5,7 @@
  */
 package com.uniminuto.edu.clncompautos.jsf;
 
+import com.uniminuto.edu.clncompautos.wscln.AdmDatosRFWSCln;
 import com.uniminuto.edu.clncompautos.wscln.CompAutosWS;
 import com.uniminuto.edu.clncompautos.wscln.CompAutosWS_Service;
 import com.uniminuto.edu.clncompautos.wscln.VntCarro;
@@ -28,6 +29,7 @@ public class CompararAutosJSFBean implements Serializable {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_38080/2WsCompAutos/CompAutosWS.wsdl")
     private CompAutosWS_Service service;
 
+    AdmDatosRFWSCln adrfwsc = new AdmDatosRFWSCln();
     private List<TablaAuto> lstTablaAutos = new ArrayList<>();
 
     @PostConstruct
@@ -35,16 +37,18 @@ public class CompararAutosJSFBean implements Serializable {
         cargarAutos();
     }
 
-    public void compararAutosSel(){
+    public void compararAutosSel_AE() {
         CompAutosWS port = service.getCompAutosWSPort();
-      String strAutos = lstTablaAutos.stream().
-              filter(e -> e.isSeleccionado()).
-              map(e -> e.getVntCarro().getCarId().toString()).
-              collect(Collectors.joining(","));
-      List<VntCarro> lstVntCarros = port.compararAutos(strAutos);
-      
+        String strAutos = lstTablaAutos.stream().
+                filter(e -> e.isSeleccionado()).
+                map(e -> e.getVntCarro().getCarId().toString()).
+                collect(Collectors.joining(","));
+        List<VntCarro> lstVntCarros = port.compararAutos(strAutos);
+        
+        
+
     }
-    
+
     public void cargarAutos() {
         CompAutosWS port = service.getCompAutosWSPort();
         lstTablaAutos = port.getLstCarros().stream().map(e -> new TablaAuto(e)).collect(Collectors.toList());
