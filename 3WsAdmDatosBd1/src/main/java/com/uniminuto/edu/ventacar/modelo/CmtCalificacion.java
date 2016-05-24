@@ -5,15 +5,17 @@
  */
 package com.uniminuto.edu.ventacar.modelo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uniminuto.edu.ventacar.ctrl.TablaCarro;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author lchacon
  */
-
 public class CmtCalificacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,7 +24,17 @@ public class CmtCalificacion implements Serializable {
     private Date cmrtFecha;
     private String usrId;
     private String usrNombre;
- 
+
+    public static CmtCalificacion fromString(String jsonRepresentation) {
+        ObjectMapper mapper = new ObjectMapper(); //Jackson's JSON marshaller
+        CmtCalificacion o = null;
+        try {
+            o = mapper.readValue(jsonRepresentation, CmtCalificacion.class);
+        } catch (IOException e) {
+            throw new WebApplicationException();
+        }
+        return o;
+    }
 
     public CmtCalificacion() {
     }
@@ -63,8 +75,6 @@ public class CmtCalificacion implements Serializable {
         this.usrId = usrId;
     }
 
-    
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,5 +113,5 @@ public class CmtCalificacion implements Serializable {
     public void setUsrNombre(String usrNombre) {
         this.usrNombre = usrNombre;
     }
-    
+
 }

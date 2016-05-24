@@ -5,15 +5,17 @@
  */
 package com.uniminuto.edu.ventacar.modelo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import javax.ws.rs.WebApplicationException;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author lchacon
  */
-
 public class VntCaracteristicas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,6 +24,17 @@ public class VntCaracteristicas implements Serializable {
     private Boolean crtcEst;
     private VntTipocrt tpcrId;
     private List<VntCarcactxauto> vntCarcactxautoList;
+
+    public static VntCaracteristicas fromString(String jsonRepresentation) {
+        ObjectMapper mapper = new ObjectMapper(); //Jackson's JSON marshaller
+        VntCaracteristicas o = null;
+        try {
+            o = mapper.readValue(jsonRepresentation, VntCaracteristicas.class);
+        } catch (IOException e) {
+            throw new WebApplicationException();
+        }
+        return o;
+    }
 
     public VntCaracteristicas() {
     }
@@ -94,5 +107,5 @@ public class VntCaracteristicas implements Serializable {
     public String toString() {
         return "com.uniminuto.edu.ventacar.modelo.VntCaracteristicas[ crtcId=" + crtcId + " ]";
     }
-    
+
 }

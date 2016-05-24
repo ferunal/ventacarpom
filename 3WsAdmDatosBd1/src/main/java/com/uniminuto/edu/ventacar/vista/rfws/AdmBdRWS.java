@@ -11,6 +11,7 @@ import com.uniminuto.edu.ventacar.modelo.CmtCalificacion;
 import com.uniminuto.edu.ventacar.modelo.VntCaracteristicas;
 import com.uniminuto.edu.ventacar.modelo.VntCarro;
 import com.uniminuto.edu.ventacar.modelo.VntTipocrt;
+import java.util.Arrays;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -92,10 +93,10 @@ public class AdmBdRWS extends BaseRestfulWS {
     @Path("/addcarxauto")
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String guardarCaractXAuto(@QueryParam("pVntCarcactxautos") List<CaractXAuto> pVntCarcactxautos) {
+    public String guardarCaractXAuto(@QueryParam("pVntCarcactxautos") CaractXAuto[] pVntCarcactxautos) {
 //        acrud.setMds(dsMyUsuarios);
         acrud.setPgDs(dsPgVentacar);
-        return String.valueOf(acrud.guardarCaracXAuto(pVntCarcactxautos));
+        return String.valueOf(acrud.guardarCaracXAuto(Arrays.asList(pVntCarcactxautos)));
     }
 
     @GET
