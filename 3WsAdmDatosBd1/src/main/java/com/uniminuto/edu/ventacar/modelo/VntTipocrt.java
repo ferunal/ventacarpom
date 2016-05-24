@@ -5,8 +5,11 @@
  */
 package com.uniminuto.edu.ventacar.modelo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -18,6 +21,17 @@ public class VntTipocrt implements Serializable {
     private Integer tpcrId;
     private String tpcrNombre;
     private List<VntCaracteristicas> vntCaracteristicasList;
+
+    public static VntTipocrt fromString(String jsonRepresentation) {
+        ObjectMapper mapper = new ObjectMapper(); //Jackson's JSON marshaller
+        VntTipocrt o = null;
+        try {
+            o = mapper.readValue(jsonRepresentation, VntTipocrt.class);
+        } catch (IOException e) {
+            throw new WebApplicationException();
+        }
+        return o;
+    }
 
     public VntTipocrt() {
     }
@@ -42,7 +56,6 @@ public class VntTipocrt implements Serializable {
         this.tpcrNombre = tpcrNombre;
     }
 
-    
     public List<VntCaracteristicas> getVntCaracteristicasList() {
         return vntCaracteristicasList;
     }

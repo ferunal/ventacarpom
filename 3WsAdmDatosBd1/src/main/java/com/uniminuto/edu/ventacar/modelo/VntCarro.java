@@ -5,15 +5,17 @@
  */
 package com.uniminuto.edu.ventacar.modelo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import javax.ws.rs.WebApplicationException;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author lchacon
  */
-
 public class VntCarro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,6 +25,17 @@ public class VntCarro implements Serializable {
     private Boolean carEst;
     private List<CmtCalificacion> cmtCalificacionList;
     private List<VntCarcactxauto> vntCarcactxautoList;
+
+    public static VntCarro fromString(String jsonRepresentation) {
+        ObjectMapper mapper = new ObjectMapper(); //Jackson's JSON marshaller
+        VntCarro o = null;
+        try {
+            o = mapper.readValue(jsonRepresentation, VntCarro.class);
+        } catch (IOException e) {
+            throw new WebApplicationException();
+        }
+        return o;
+    }
 
     public VntCarro() {
     }
@@ -63,7 +76,6 @@ public class VntCarro implements Serializable {
         this.carEst = carEst;
     }
 
-    
     public List<CmtCalificacion> getCmtCalificacionList() {
         return cmtCalificacionList;
     }
@@ -105,5 +117,5 @@ public class VntCarro implements Serializable {
     public String toString() {
         return "com.uniminuto.edu.ventacar.modelo.VntCarro[ carId=" + carId + " ]";
     }
-    
+
 }

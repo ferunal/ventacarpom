@@ -5,14 +5,29 @@
  */
 package com.uniminuto.edu.ventacar.modelo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import javax.ws.rs.WebApplicationException;
+
 /**
  *
  * @author fercris
  */
 public class CaractXAuto {
-    
+
     private Long carId;
     private Long crtcId;
+
+    public static CaractXAuto fromString(String jsonRepresentation) {
+        ObjectMapper mapper = new ObjectMapper(); //Jackson's JSON marshaller
+        CaractXAuto o = null;
+        try {
+            o = mapper.readValue(jsonRepresentation, CaractXAuto.class);
+        } catch (IOException e) {
+            throw new WebApplicationException();
+        }
+        return o;
+    }
 
     /**
      * @return the carId
@@ -41,5 +56,5 @@ public class CaractXAuto {
     public void setCrtcId(Long crtcId) {
         this.crtcId = crtcId;
     }
-            
+
 }

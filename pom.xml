@@ -16,5 +16,6 @@
     <module>4ClnAdmDatosUsrAutos</module>
     <module>7WsAdmDAtosBd</module>
     <module>1ClnCompAutos</module>
+    <module>webService</module>
   </modules>
 </project>
