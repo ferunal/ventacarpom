@@ -72,7 +72,7 @@ public class VntCarro implements Serializable {
         this.cmtCalificacionList = cmtCalificacionList;
     }
 
-    @XmlTransient
+  
     public List<VntCarcactxauto> getVntCarcactxautoList() {
         return vntCarcactxautoList;
     }

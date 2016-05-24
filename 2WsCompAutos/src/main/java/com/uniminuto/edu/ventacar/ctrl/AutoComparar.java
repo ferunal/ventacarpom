@@ -11,31 +11,15 @@ import com.uniminuto.edu.ventacar.modelo.VntCaracteristicas;
 import com.uniminuto.edu.ventacar.modelo.VntCarcactxauto;
 import com.uniminuto.edu.ventacar.modelo.VntCarro;
 import com.uniminuto.edu.ventacar.modelo.VntTipocrt;
-import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import javax.inject.Inject;
-import javax.inject.Named;
-import org.icefaces.ace.component.fileentry.FileEntry;
-import org.icefaces.ace.component.fileentry.FileEntryEvent;
-import org.icefaces.ace.component.fileentry.FileEntryResults;
 
 public class AutoComparar extends ConexionBD implements Serializable {
 
@@ -109,6 +93,39 @@ public class AutoComparar extends ConexionBD implements Serializable {
         }
     }
 
+     public List<VntCarro> getLstCarros() {
+
+        List<VntCarro> lstVntCarro = new ArrayList<>();
+        try {
+            dsPgConexion();
+            String strSql = "SELECT car_id, car_nombre, car_foto, car_est  FROM vnt_carro  ORDER BY car_nombre";
+            Statement st = conPg.createStatement();
+            ResultSet rs = st.executeQuery(strSql);
+            while (rs.next()) {
+                VntCarro vc = new VntCarro(rs.getLong("car_id"));
+                vc.setCarNombre(rs.getString("car_nombre"));
+                vc.setCarFoto(rs.getString("car_foto"));
+                vc.setCarEst(rs.getBoolean("car_est"));
+                vc.setVntCarcactxautoList(cargarCaractsXAuto(vc.getCarId()));
+                lstVntCarro.add(vc);
+
+                // tablaCarro.setTcXCarro(caracteristicaJSFBean.cargarCaractsXAuto(vc.getCarId()));
+                //tablaCarro.setLstCmtCalificacion(getCmtCalificacionsXauto(vc.getCarId()));
+                //lstTablaCarro.add(tablaCarro);
+            }
+            return lstVntCarro;
+        } catch (SQLException ex) {
+            Logger.getLogger(AutoComparar.class.getName()).log(Level.SEVERE, null, ex);
+            return new ArrayList<>();
+        } finally {
+            try {
+                cerrarPgConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(AutoComparar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
     public List<VntCarro> getLstCarrosXIds(String pIds) {
 
         List<VntCarro> lstVntCarro = new ArrayList<>();

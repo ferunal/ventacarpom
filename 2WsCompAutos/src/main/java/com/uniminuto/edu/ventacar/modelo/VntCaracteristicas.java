@@ -84,10 +84,7 @@ public class VntCaracteristicas implements Serializable {
             return false;
         }
         VntCaracteristicas other = (VntCaracteristicas) object;
-        if ((this.crtcId == null && other.crtcId != null) || (this.crtcId != null && !this.crtcId.equals(other.crtcId))) {
-            return false;
-        }
-        return true;
+        return !((this.crtcId == null && other.crtcId != null) || (this.crtcId != null && !this.crtcId.equals(other.crtcId)));
     }
 
     @Override

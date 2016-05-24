@@ -38,4 +38,9 @@ public class CompAutosWS extends BaseSOAPWS {
         return ac.getLstCarrosXIds(pIdCarros);
     }
 
+    @WebMethod(operationName = "getLstCarros")
+    public List<VntCarro> getLstCarros() {        
+        ac.setPgDs(dsPgVentacar);
+        return ac.getLstCarros();
+    }
 }

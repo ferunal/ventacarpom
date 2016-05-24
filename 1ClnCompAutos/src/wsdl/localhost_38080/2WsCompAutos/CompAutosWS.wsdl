@@ -6,6 +6,10 @@
 
   <xs:element name="compararAutosResponse" type="tns:compararAutosResponse"/>
 
+  <xs:element name="getLstCarros" type="tns:getLstCarros"/>
+
+  <xs:element name="getLstCarrosResponse" type="tns:getLstCarrosResponse"/>
+
   <xs:element name="hello" type="tns:hello"/>
 
   <xs:element name="helloResponse" type="tns:helloResponse"/>
@@ -29,6 +33,7 @@
       <xs:element minOccurs="0" name="carId" type="xs:long"/>
       <xs:element minOccurs="0" name="carNombre" type="xs:string"/>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="cmtCalificacionList" nillable="true" type="tns:cmtCalificacion"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="vntCarcactxautoList" nillable="true" type="tns:vntCarcactxauto"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -39,6 +44,43 @@
       <xs:element minOccurs="0" name="cmtrId" type="xs:long"/>
       <xs:element minOccurs="0" name="usrId" type="xs:string"/>
       <xs:element minOccurs="0" name="usrNombre" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vntCarcactxauto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="carId" type="tns:vntCarro"/>
+      <xs:element minOccurs="0" name="crtcId" type="tns:vntCaracteristicas"/>
+      <xs:element minOccurs="0" name="cxaEst" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="cxaId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vntCaracteristicas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="crtcDescripcion" type="xs:string"/>
+      <xs:element minOccurs="0" name="crtcEst" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="crtcId" type="xs:long"/>
+      <xs:element minOccurs="0" name="tpcrId" type="tns:vntTipocrt"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="vntCarcactxautoList" nillable="true" type="tns:vntCarcactxauto"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vntTipocrt">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tpcrId" type="xs:int"/>
+      <xs:element minOccurs="0" name="tpcrNombre" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="vntCaracteristicasList" nillable="true" type="tns:vntCaracteristicas"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getLstCarros">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getLstCarrosResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:vntCarro"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -60,12 +102,20 @@
     <wsdl:part element="tns:compararAutosResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getLstCarros">
+    <wsdl:part element="tns:getLstCarros" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="hello">
     <wsdl:part element="tns:hello" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="compararAutos">
     <wsdl:part element="tns:compararAutos" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLstCarrosResponse">
+    <wsdl:part element="tns:getLstCarrosResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="helloResponse">
@@ -77,6 +127,12 @@
       <wsdl:input message="tns:compararAutos" name="compararAutos">
     </wsdl:input>
       <wsdl:output message="tns:compararAutosResponse" name="compararAutosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLstCarros">
+      <wsdl:input message="tns:getLstCarros" name="getLstCarros">
+    </wsdl:input>
+      <wsdl:output message="tns:getLstCarrosResponse" name="getLstCarrosResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="hello">
@@ -94,6 +150,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="compararAutosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLstCarros">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLstCarros">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLstCarrosResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

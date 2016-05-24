@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <f:view contentType="text/html">
+
+        <h:head>
+            <title>Comparar autos</title>
+            <!-- This line is only for ICE component, remove it if no ice component is used in this page.-->
+            <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+
+
+        </h:head>
+
+        <h:body>
+
+
+            <h:form>
+
+
+                <ace:panel header="Autos">
+                    <ace:dataTable value="#{compararAutosJSFBean.lstTablaAutos}" var="item">
+                            <ace:column>
+                            
+                                <ace:checkboxButton value="#{item.seleccionado}"/>
+
+                        </ace:column>
+                        <ace:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre auto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vntCarro.carNombre}"/>
+
+                        </ace:column>
+                        <ace:column>
+                            <f:facet name="header">
+                                <h:outputText value="Foto"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vntCarro.carFoto}"/>
+
+                        </ace:column>
+                    </ace:dataTable>
+                    <ace:pushButton actionListener="#{compararAutosJSFBean}"
+                    <ace:dataTable>
+                        
+                    </ace:dataTable>
+                </ace:panel>
+
+
+
+            </h:form>
+
+        </h:body>
+    </f:view>
+
+
+
+
+</html>

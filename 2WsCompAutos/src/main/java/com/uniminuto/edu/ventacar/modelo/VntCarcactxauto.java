@@ -73,10 +73,7 @@ public class VntCarcactxauto implements Serializable {
             return false;
         }
         VntCarcactxauto other = (VntCarcactxauto) object;
-        if ((this.cxaId == null && other.cxaId != null) || (this.cxaId != null && !this.cxaId.equals(other.cxaId))) {
-            return false;
-        }
-        return true;
+        return !((this.cxaId == null && other.cxaId != null) || (this.cxaId != null && !this.cxaId.equals(other.cxaId)));
     }
 
     @Override

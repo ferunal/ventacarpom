@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+
+    <navigation-rule>
+        <from-view-id>/Inicio.xhtml</from-view-id>       
+        <navigation-case>
+            <from-outcome>ingresar</from-outcome>
+            <to-view-id>/principal/BandEntrada.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+ 
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>Home</from-outcome>
+            <to-view-id>/principal/BandEntrada.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/Inicio.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargarArchivos</from-outcome>
+            <to-view-id>/principal/PresupuestoArc.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargarArchivoPre</from-outcome>
+            <to-view-id>/subsistema/cargarArchivo/cargaArcPresupuesto.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargarArchivoCont</from-outcome>
+            <to-view-id>/subsistema/cargarArchivo/cargaArcContabilidad.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>reportes</from-outcome>
+            <to-view-id>/subsistema/reportes/GenInforme.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargarArchivosTH</from-outcome>
+            <to-view-id>/subsistema/cargarArchivo/cargaArcTalentoHumano.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargarArchivosPLA</from-outcome>
+            <to-view-id>/subsistema/cargarArchivo/cargaArcPlaneacion.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargarArchivosContr</from-outcome>
+            <to-view-id>/subsistema/cargarArchivo/cargaArcContratacion.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cargaDosFases</from-outcome>
+            <to-view-id>/subsistema/cargaDosFases/AjusteInconsistencias.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>puntosControl</from-outcome>
+            <to-view-id>/subsistema/notificacion/puntosControl/Notificacion.jsf</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>gestPuntosControl</from-outcome>
+            <to-view-id>/principal/gestPuntoControl/GestionPuntoControl.jsf</to-view-id>
+        </navigation-case>
+    </navigation-rule>    
+</faces-config>

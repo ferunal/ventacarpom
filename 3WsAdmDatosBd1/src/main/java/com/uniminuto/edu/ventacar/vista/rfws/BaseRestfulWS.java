@@ -20,7 +20,7 @@ public abstract class BaseRestfulWS {
 
     @Resource(lookup = "java:jboss/datasources/ventacards")
     protected DataSource dsPgVentacar;
-//    @Resource(lookup = "")
+//    @Resource(lookup = "java:jboss/datasources/ventacards")
 //    protected DataSource dsMyUsuarios;
 
    
