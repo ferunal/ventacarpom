@@ -5,46 +5,64 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <link href="resource/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
-    <link href="resource/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
-<head><div class="progress">
-</div>   
+
+    <head>
+        <title></title>
+        <link href="resource/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="resource/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     </head>
-        <form action="CleinteSrvlt">
-            
-       <div class="hero-unit">
-       <h2>INGRESE INFORMACION DEL AUTOMOVIL</h2>
-       <p><tbody>
-       </div>
-        
-                  
-            <table border="0" cellpadding="2">
-                 
-                    <p><tbody>
-                    <tr>
-                    <tr><td>Nombre </td>
-                    <td><input type="text" name="idusuario" value="" /></td>   </tr>
-                    </td>
-                   </tr>
-                   <tr><td>Motor</td>
-                   <td><input type="text" name="color" value="" /></td></tr>               
-                   <tr> <td>Precio</td>
-                   <td><input type="text" name="precio" value="" /></td> </tr>
-                   <tr><td>Frenos</td>
-                   <td><input type="text" name="frenos" value="" /></td><tr></tr>
-                   <tr> <td>precio</td>
-                   <td><input type="text" name="precio" value="" /></td><tr></tr>
-                   <tr><td>Descripcion</td>
-                   <td><input type="text" name="descriocio" value="" /></td></tr>
-                   <p>
-                   </table>
-                  <button class="btn btn-large btn-primary" type="monto" onclick=" sumnit()">GUARDAR</button>
-                 
-                </a>
-                </p>
-              </div
-             
-    </body>
+
+    <form action="CleinteSrvlt">
+
+        <div class="hero-unit">
+            <h2>INGRESE INFORMACION DEL AUTOMOVIL</h2>
+
+        </div>
+        <div class="progress">
+        </div>  
+
+
+
+        <table border="0">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nombre </td>
+                    <td><input type="text" name="idusuario" value="" /></td>
+                </tr>
+                <tr>
+                    <td>Motor</td>
+                    <td><input type="text" name="color" value="" /></td>
+                </tr>
+                <tr>
+                    <td>Precio</td>
+                    <td><input type="text" name="precio" value="" /></td>
+                </tr>
+                <tr>
+                    <td>Frenos</td>
+                    <td><input type="text" name="frenos" value="" /></td>
+                </tr>
+                <tr>
+                    <td>Descripcion</td>
+                    <td><input type="text" name="descriocio" value="" />/td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <button class="btn btn-large btn-primary" type="monto" onclick=" sumnit()">GUARDAR</button>
+
+
+
+
+
+        </body>
 </html>
