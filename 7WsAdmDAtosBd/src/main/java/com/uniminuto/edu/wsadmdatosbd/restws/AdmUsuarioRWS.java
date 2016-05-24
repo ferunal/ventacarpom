@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -28,6 +29,15 @@ public class AdmUsuarioRWS extends BaseRestfulWS {
     @Path("getusr")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Uusario> getLstUusarios() {
+        ucrud.setMds(dsMyUsuarios);
+       
+        return ucrud.cargarUsuarios();
+    }
+    
+      @GET
+    @Path("getusr")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Uusario> addUsuario(@QueryParam("usr") Uusario uusario) {
         ucrud.setMds(dsMyUsuarios);
        
         return ucrud.cargarUsuarios();

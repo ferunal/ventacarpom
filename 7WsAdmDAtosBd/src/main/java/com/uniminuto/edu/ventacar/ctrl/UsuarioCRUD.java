@@ -7,6 +7,7 @@ package com.uniminuto.edu.ventacar.ctrl;
 
 import com.uniminuto.edu.ventacar.base.ConexionBD;
 import com.uniminuto.edu.ventacar.modelo.Uusario;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,7 +28,7 @@ public class UsuarioCRUD extends ConexionBD {
             String strSql = "SELECT usr_id, usr_nombre, usr_correo FROM usuario ORDER BY usr_nombre;";
             Statement st = conMy.createStatement();
             try (ResultSet rs = st.executeQuery(strSql)) {
-                while (rs.next()) {                   
+                while (rs.next()) {
 
                     lstUusario.add(new Uusario(rs.getString("usr_id"), rs.getString("usr_nombre"), rs.getString("usr_correo")));
 
@@ -37,7 +38,70 @@ public class UsuarioCRUD extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioCRUD.class.getName()).log(Level.SEVERE, null, ex);
             return new ArrayList<>();
+        } finally {
+            try {
+                conMy.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    }
+
+    public String guardarUsr(Uusario uusario) {
+        try {
+            StringBuilder strBSql = new StringBuilder();
+            strBSql.append(" INSERT INTO usuario\n"
+                    + "(usr_id,\n"
+                    + "usr_nombre,\n"
+                    + "usr_correo)\n"
+                    + "VALUES ('");
+            strBSql.append(uusario.getUsrId());
+            strBSql.append("','");
+            strBSql.append(uusario.getUsrNombre());
+            strBSql.append("','");
+            strBSql.append(uusario.getUsrCorreo());
+            strBSql.append("')");
+            Statement smt = conMy.createStatement();
+            smt.executeUpdate(strBSql.toString());
+            return uusario.getUsrId();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            return "-1";
+        } finally {
+            try {
+                conMy.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    public String actualizarUsr(Uusario uusario) {
+        try {
+            StringBuilder strBSql = new StringBuilder();
+            strBSql.append(" UPDATE usuario SET \n"
+                    + "usr_nombre = ?,\n"
+                    + "usr_correo = ? WHERE " + "usr_id = ? ");
+
+            PreparedStatement smt = conMy.prepareStatement(strBSql.toString());
+            smt.setString(1, uusario.getUsrNombre());
+            smt.setString(1, uusario.getUsrCorreo());
+            smt.setString(1, uusario.getUsrId());
+
+            smt.executeUpdate(strBSql.toString());
+            return uusario.getUsrId();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            return "-1";
+        } finally {
+            try {
+                conMy.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
 //    public void grabarComentarioXAuto() {
@@ -66,5 +130,4 @@ public class UsuarioCRUD extends ConexionBD {
     /**
      * @return the lstTablaUsuarios
      */
-   
 }

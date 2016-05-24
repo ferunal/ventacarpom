@@ -44,7 +44,7 @@ public class CompararAutosJSFBean implements Serializable {
                 map(e -> e.getVntCarro().getCarId().toString()).
                 collect(Collectors.joining(","));
         List<VntCarro> lstVntCarros = port.compararAutos(strAutos);
-        
+        adrfwsc.addCaract();
         
 
     }
