@@ -168,7 +168,7 @@
                         <share-prepared-statements>false</share-prepared-statements>
                     </statement>
                 </datasource>
-				      <datasource jta="false" jndi-name="java:jboss/datasources/ventacards" pool-name="VentacarDs" enabled="true" use-ccm="false">
+                <datasource jta="false" jndi-name="java:jboss/datasources/ventacards" pool-name="VentacarDs" enabled="true" use-ccm="false">
                     <connection-url>jdbc:postgresql://localhost:5432/ventacar</connection-url>
                     <driver-class>org.postgresql.Driver</driver-class>
                     <driver>postgresql</driver>
@@ -190,12 +190,27 @@
                         <share-prepared-statements>false</share-prepared-statements>
                     </statement>
                 </datasource>
+                <datasource jta="true" jndi-name="java:jboss/datasources/ventacarusr" pool-name="VentacarUsrDs" enabled="true" use-java-context="true" use-ccm="true">
+                    <connection-url>jdbc:mysql://localhost:3306</connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>auditoria</user-name>
+                        <password>auditoria</password>
+                    </security>
+                    <statement>
+                        <prepared-statement-cache-size>32</prepared-statement-cache-size>
+                        <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
+                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>
                     <driver name="postgresql" module="org.postgresql">
                         <xa-datasource-class>org.postgresql.Driver</xa-datasource-class>
+                    </driver>
+                    <driver name="mysql" module="com.mysql.driver">
+                        <driver-class>com.mysql.jdbc.Driver</driver-class>
                     </driver>
                 </drivers>
             </datasources>
