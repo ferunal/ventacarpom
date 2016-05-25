@@ -5,13 +5,17 @@
  */
 package com.uniminuto.edu.ventacar.modelo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.util.Objects;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author fercris
  */
 public class Uusario {
+
     private String usrId;
     private String usrNombre;
     private String usrCorreo;
@@ -20,6 +24,17 @@ public class Uusario {
         this.usrId = usrId;
         this.usrNombre = usrNombre;
         this.usrCorreo = usrCorreo;
+    }
+
+    public static Uusario fromString(String jsonRepresentation) {
+        ObjectMapper mapper = new ObjectMapper(); //Jackson's JSON marshaller
+        Uusario o = null;
+        try {
+            o = mapper.readValue(jsonRepresentation, Uusario.class);
+        } catch (IOException e) {
+            throw new WebApplicationException();
+        }
+        return o;
     }
 
     public Uusario() {

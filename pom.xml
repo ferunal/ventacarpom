@@ -17,5 +17,6 @@
     <module>7WsAdmDAtosBd</module>
     <module>1ClnCompAutos</module>
     <module>webService</module>
+    <module>0ModeloPojos</module>
   </modules>
 </project>

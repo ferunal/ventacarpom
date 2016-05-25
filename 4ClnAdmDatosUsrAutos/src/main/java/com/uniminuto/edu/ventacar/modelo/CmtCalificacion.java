@@ -5,7 +5,6 @@
  */
 package com.uniminuto.edu.ventacar.modelo;
 
-import com.uniminuto.edu.ventacar.ctrl.TablaCarro;
 import java.io.Serializable;
 import java.util.Date;
 
