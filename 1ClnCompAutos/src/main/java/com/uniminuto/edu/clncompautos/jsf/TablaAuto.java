@@ -5,6 +5,7 @@
  */
 package com.uniminuto.edu.clncompautos.jsf;
 
+import com.uniminuto.edu.ventacar.modelo.TablaBaseFrm;
 import com.uniminuto.edu.clncompautos.wscln.VntCarro;
 import java.util.Objects;
 

@@ -32,6 +32,15 @@ public class AdmDatosUsrRFWSCln {
         webTarget = client.target(BASE_URI).path("admusr");
     }
 
+    public <T> T validarUsuario(Class<T> responseType, String usr) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        if (usr != null) {
+            resource = resource.queryParam("usr", usr);
+        }
+        resource = resource.path("addusr");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public <T> T getLstUusarios(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("getusr");
@@ -42,17 +51,12 @@ public class AdmDatosUsrRFWSCln {
         return webTarget.path("actusr").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), String.class);
     }
 
-    public String addUsuario(String usr) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        if (usr != null) {
-            resource = resource.queryParam("usr", usr);
-        }
-        resource = resource.path("addusr");
-        return resource.request(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
+    public String addUsuario(Object requestEntity) throws ClientErrorException {
+        return webTarget.path("addusr").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), String.class);
     }
 
     public void close() {
         client.close();
     }
-    
+
 }

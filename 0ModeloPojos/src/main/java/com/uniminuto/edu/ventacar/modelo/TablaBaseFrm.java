@@ -1,4 +1,4 @@
-package com.uniminuto.edu.clncompautos.jsf;
+package com.uniminuto.edu.ventacar.modelo;
 
 /*
  * To change this template, choose Tools | Templates

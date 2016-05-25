@@ -57,5 +57,14 @@ public class AdmUsuarioRWS extends BaseRestfulWS {
         return ucrud.guardarUsr(uusario);
     }
 
-    
+    @GET
+    @Path("addusr")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Uusario validarUsuario(@QueryParam("usr") Uusario uusario) {
+        ucrud.setMds(dsMyUsuarios);
+
+        return ucrud.validarUsuarioCRUD(uusario);
+    }
+
 }

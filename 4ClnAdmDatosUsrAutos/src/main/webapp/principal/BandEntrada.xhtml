@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <f:view contentType="text/html">
+
+        <h:head>
+            <title>Comparar autos</title>
+            <!-- This line is only for ICE component, remove it if no ice component is used in this page.-->
+            <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+
+
+        </h:head>
+
+        <h:body>
+
+
+            <h:form>
+
+
+                <ace:panel header="Agregar carro">
+
+                    <ace:panel header="Guardar auto">
+                        <h:panelGrid columns="1">
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Nombre"/>
+                                <ace:textEntry value="#{autoJSFBean.tablaCarroSel.carro.carNombre}"/>
+                                <h:outputText value="foto"/>
+                                <ace:fileEntry id="fileEntryComp"
+                                               label="File Entry"
+                                               relativePath="uploaded"
+                                               autoUpload="true"
+
+                                               fileEntryListener="#{autoJSFBean.listener}"/>
+
+                            </h:panelGrid>
+                            <ace:graphicImage value="#{autoJSFBean.byteArrrayImagen}" alt="alt"/>
+                            <ace:pushButton value="Guardar" actionListener="#{autoJSFBean.guardarCarroAE()}"/>
+                        </h:panelGrid>
+                    </ace:panel>
+                    <ace:panel header="Carros existentes">
+                        <ace:dataTable value="#{autoJSFBean.lstTablaCarro}" var="item">
+                            <ace:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{item.carro.carNombre}"/>
+                            </ace:column>
+                            <ace:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Foto"/>
+                                </f:facet>
+                                <ace:graphicImage value="#{item.byteArrrayImagen}" alt="#{item.carro.carFoto}"/>
+                            </ace:column>
+                        </ace:dataTable>
+                    </ace:panel>
+
+                </ace:panel>
+
+
+
+            </h:form>
+
+        </h:body>
+    </f:view>
+
+
+
+
+</html>

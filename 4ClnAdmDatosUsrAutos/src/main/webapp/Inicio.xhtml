@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <f:view contentType="text/html">
+
+        <h:head>
+            <title>Comparar autos</title>
+            <!-- This line is only for ICE component, remove it if no ice component is used in this page.-->
+            <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+
+
+        </h:head>
+
+        <h:body>
+
+
+            <h:form>
+
+
+                <ace:panel header="Ingreso">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Usuario"/>
+                        <ace:textEntry value="#{admDatosUsrJSFBean.uusario.usrUsuario}"/>
+                        <h:outputText value="Clave"/>
+                        <ace:textEntry value="#{admDatosUsrJSFBean.uusario.usrClave}"/>
+                    </h:panelGrid>
+                    <ace:pushButton value="Ingresar" action="#{admDatosUsrJSFBean.validarUsuarioAE}"/>
+                </ace:panel>
+
+
+
+            </h:form>
+
+        </h:body>
+    </f:view>
+
+
+
+
+</html>
+

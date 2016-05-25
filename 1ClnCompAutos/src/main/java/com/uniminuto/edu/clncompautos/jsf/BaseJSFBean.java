@@ -5,6 +5,7 @@
 package com.uniminuto.edu.clncompautos.jsf;
 
 
+import com.uniminuto.edu.ventacar.modelo.TablaBaseFrm;
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;

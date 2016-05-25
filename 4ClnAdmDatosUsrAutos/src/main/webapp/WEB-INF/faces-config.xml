@@ -12,7 +12,7 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>Home</from-outcome>
+            <from-outcome>ingresar</from-outcome>
             <to-view-id>/principal/BandEntrada.jsf</to-view-id>
         </navigation-case>
     </navigation-rule>    

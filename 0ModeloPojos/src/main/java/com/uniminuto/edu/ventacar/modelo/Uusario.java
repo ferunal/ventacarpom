@@ -15,6 +15,8 @@ public class Uusario {
     private String usrId;
     private String usrNombre;
     private String usrCorreo;
+    private String usrUsuario;
+    private String usrClave;
 
     public Uusario(String usrId, String usrNombre, String usrCorreo) {
         this.usrId = usrId;
@@ -90,5 +92,33 @@ public class Uusario {
      */
     public void setUsrCorreo(String usrCorreo) {
         this.usrCorreo = usrCorreo;
+    }
+
+    /**
+     * @return the usrUsuario
+     */
+    public String getUsrUsuario() {
+        return usrUsuario;
+    }
+
+    /**
+     * @param usrUsuario the usrUsuario to set
+     */
+    public void setUsrUsuario(String usrUsuario) {
+        this.usrUsuario = usrUsuario;
+    }
+
+    /**
+     * @return the usrClave
+     */
+    public String getUsrClave() {
+        return usrClave;
+    }
+
+    /**
+     * @param usrClave the usrClave to set
+     */
+    public void setUsrClave(String usrClave) {
+        this.usrClave = usrClave;
     }
 }
